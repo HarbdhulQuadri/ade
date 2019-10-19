@@ -1,0 +1,37 @@
+<div class="container-fluid">
+
+  {{ userLoginForm.value | json }}
+<hr>
+<br>
+{{ scrumUserMod | json }}
+
+  <form #userLoginForm="ngForm">
+
+  <h1> Login</h1>
+  <div class="form_group">
+    <label>Email</label>
+<input required type="email"  [class.is-invalid]='email.invalid && email.touched' name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{8,15}$" #email='ngModel' class="form-control" [(ngModel)]="scrumUserModel.email" >      
+
+
+ </div>
+  
+  <div class="form_group">
+      <label>password</label>
+<input  required  [class.is-invalid]="password.invalid && password.touched" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,15}$" #password='ngModel' type="password"name = 'password' class="form-control" [(ngModel)]='scrumUserModel.password' >  
+  <div *ngIf='password.errors && (password.invalid || password.touched)'>
+  <small class="text-danger" *ngIf="password.errors.required">password required</small>
+    <small class="text-danger" *ngIf="password.errors.pattern">password Must be between 8 - 15 characters long and contain at least one special character.</small>
+
+</div>
+  </div>
+  <div class="form_group">
+      <label>Project Name</label>
+      <input  required type="" [class.is-invalid]="Project_Name.invalid && Project_Name.touched" name="Project_Name"#Project_Name='ngModel'  class="form-control" [(ngModel)]="scrumUserModel.Project_Name" >
+      
+      <div *ngIf='Project_Name.errors && (Project_Name.invalid || Project_Name.touched)'>
+  <small class="text-danger" *ngIf="Project_Name.errors.required">Project Name Required</small>
+</div>
+</div>
+ <button class="btn btn-primary" type="submit"> Login </button>
+</form>
+</div>
